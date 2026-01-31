@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import Card from "./components/Card";
 
 function App() {
   const [deck, setDeck] = useState([1, 2, 3, 4, 5, 6]);
@@ -26,7 +27,7 @@ function App() {
     setSelectedCards(newSelectedCards);
   };
 
-  const handleCardClick = (e, card, deck) => {
+  const handleCardClick = (e, card) => {
     shuffleCards(deck);
     selectCard(card);
   };
@@ -34,20 +35,19 @@ function App() {
   return (
     <>
       <h1>Card amount: {displayedCards.length}</h1>
-      {displayedCards.map((card) => (
-        <button
-          className="bg-white px-4 py-2 text-black cursor-pointer"
-          onClick={(e) => handleCardClick(e, card, deck)}
-        >
-          {card}
-        </button>
-      ))}
+      <div className="flex flex-row gap-1">
+        {displayedCards.map((card) => (
+          <Card card={card} onClick={handleCardClick} />
+        ))}
+      </div>
       <h2>Selected Cards:</h2>
-      {selectedCards.map((card) => (
-        <div className="bg-white px-4 py-2 text-black cursor-pointer">
-          {card}
-        </div>
-      ))}
+      <div className="flex flex-row gap-1">
+        {selectedCards.map((card) => (
+          <div className="bg-white px-4 py-2 text-black cursor-pointer">
+            {card}
+          </div>
+        ))}
+      </div>
     </>
   );
 }
