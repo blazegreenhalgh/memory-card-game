@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 import EndScreen from "./EndScreen";
 
-function Game({ selectedDeck, rounds, setPlaying, highscore, setHighscore }) {
-  const [score, setScore] = useState(0);
+function Game({ selectedDeck, rounds, setPlaying }) {
   const deck = selectedDeck.slice(0, Math.floor(rounds * 1.5));
   const [displayedCards, setDisplayedCards] = useState(
     Array(rounds).fill(null),
@@ -34,7 +33,6 @@ function Game({ selectedDeck, rounds, setPlaying, highscore, setHighscore }) {
     }
     newSelectedCards.push(card);
     setSelectedCards(newSelectedCards);
-    setScore((prev) => prev + 1);
   };
 
   useEffect(() => {
@@ -42,12 +40,6 @@ function Game({ selectedDeck, rounds, setPlaying, highscore, setHighscore }) {
       setResult("won");
     }
   }, [selectedCards]);
-
-  useEffect(() => {
-    if (score > highscore) {
-      setHighscore(score);
-    }
-  }, [score]);
 
   const handleCardClick = (card: any) => {
     shuffleCards(deck);
@@ -60,7 +52,6 @@ function Game({ selectedDeck, rounds, setPlaying, highscore, setHighscore }) {
         <h1>
           Round: {selectedCards.length} / {rounds}
         </h1>
-        <h2>Score: {score}</h2>
       </div>
       <div className="flex flex-row gap-1">
         {displayedCards.map((card) => (
