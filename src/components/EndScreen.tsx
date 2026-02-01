@@ -13,7 +13,7 @@ function EndScreen({ result }) {
   }
   return (
     <div
-      className={`fixed inset-0 self-center justify-self-center w-1/2 h-1/2 ${classes}`}
+      className={`fixed inset-0 self-center justify-self-center w-1/2 h-1/2 rounded-2xl p-4 flex justify-center ${classes}`}
     >
       {title}
     </div>
