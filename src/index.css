@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+/* This is what creates `px-gutter`, `gap-gutter`, etc. */
+@theme {
+  --spacing-gutter: 1rem;
+}
+
+@variant sm {
+  :root {
+    --spacing-gutter: 2rem;
+  }
+}
+@variant lg {
+  :root {
+    --spacing-gutter: 3rem;
+  }
+}
+@variant md {
+  :root {
+    --spacing-gutter: 3rem;
+  }
+}

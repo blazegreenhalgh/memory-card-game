@@ -4,7 +4,7 @@ function Button({ onClick, children }) {
   return (
     <button
       onClick={onClick}
-      className="bg-blue-500 w-full hover:bg-blue-600 px-12 py-2 rounded-xl cursor-pointer"
+      className="w-fit cursor-pointer rounded-xl bg-blue-500 px-12 py-2 hover:bg-blue-600"
     >
       {children}
     </button>

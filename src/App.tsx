@@ -12,12 +12,11 @@ function App() {
     symbols: ["!", "@", "#", "$", "%", "^", "&", "*", "("],
   };
   const [selectedDeck, setSelectedDeck] = useState(decks["numbers"]);
-  const [roundCount, setRoundCount] = useState(5);
+  const [roundCount, setRoundCount] = useState(8);
 
   return (
-    <main className="flex flex-col justify-center items-center">
+    <main className="px-gutter flex w-full flex-col items-center justify-center gap-4">
       {!playing && <Button onClick={() => setPlaying(true)}>Play</Button>}
-
       {!playing && (
         <div className="flex gap-4">
           {Object.keys(decks).map((key) => (

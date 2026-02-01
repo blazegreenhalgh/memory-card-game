@@ -47,22 +47,22 @@ function Game({ selectedDeck, rounds, setPlaying }) {
   };
 
   return (
-    <div className="game w-full">
-      <div className="game-stats flex gap-4 mb-4 justify-center">
+    <div className="game w-full items-center">
+      <div className="game-stats mb-4 flex justify-center gap-4">
         <h1>
           Round: {selectedCards.length} / {rounds}
         </h1>
       </div>
-      <div className="card-wrapper h-full flex flex-row gap-1">
+      <div className="cards-wrapper mx-auto flex h-fit w-full max-w-lg flex-row flex-wrap items-center justify-start gap-1">
         {displayedCards.map((card) => (
           <Card card={card} onClick={handleCardClick} />
         ))}
       </div>
-      <div className="fixed bottom-4 items-center flex flex-col">
+      <div className="fixed bottom-4 flex flex-col items-center">
         <h2>Selected Cards:</h2>
         <div className="flex gap-1">
           {selectedCards.map((card) => (
-            <div className="bg-white px-4 py-2 text-black cursor-pointer">
+            <div className="cursor-pointer bg-white px-4 py-2 text-black">
               {card}
             </div>
           ))}
