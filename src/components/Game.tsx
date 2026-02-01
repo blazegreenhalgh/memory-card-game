@@ -3,9 +3,12 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 import EndScreen from "./EndScreen";
 
-function Game({ selectedDeck }) {
-  const [deck, setDeck] = useState(selectedDeck);
-  const [displayedCards, setDisplayedCards] = useState(Array(4).fill(null));
+function Game({ selectedDeck, rounds, setPlaying, highscore, setHighscore }) {
+  const [score, setScore] = useState(0);
+  const deck = selectedDeck.slice(0, Math.floor(rounds * 1.5));
+  const [displayedCards, setDisplayedCards] = useState(
+    Array(rounds).fill(null),
+  );
   const [selectedCards, setSelectedCards] = useState([]);
   let [result, setResult] = useState("");
 
@@ -27,11 +30,11 @@ function Game({ selectedDeck }) {
     const newSelectedCards = Array.from(selectedCards);
     if (newSelectedCards.includes(card)) {
       setResult("lost");
-
       return;
     }
     newSelectedCards.push(card);
     setSelectedCards(newSelectedCards);
+    setScore((prev) => prev + 1);
   };
 
   useEffect(() => {
@@ -40,6 +43,12 @@ function Game({ selectedDeck }) {
     }
   }, [selectedCards]);
 
+  useEffect(() => {
+    if (score > highscore) {
+      setHighscore(score);
+    }
+  }, [score]);
+
   const handleCardClick = (card: any) => {
     shuffleCards(deck);
     selectCard(card);
@@ -47,7 +56,12 @@ function Game({ selectedDeck }) {
 
   return (
     <>
-      <h1>Card amount: {displayedCards.length}</h1>
+      <div className="game-stats flex gap-4 mb-4 justify-center">
+        <h1>
+          Round: {selectedCards.length} / {rounds}
+        </h1>
+        <h2>Score: {score}</h2>
+      </div>
       <div className="flex flex-row gap-1">
         {displayedCards.map((card) => (
           <Card card={card} onClick={handleCardClick} />
@@ -63,8 +77,12 @@ function Game({ selectedDeck }) {
           ))}
         </div>
       </div>
-      {result === "lost" && <EndScreen result={result} />}
-      {result === "won" && <EndScreen result={result} />}
+      {result === "lost" && (
+        <EndScreen result={result} setPlaying={setPlaying} />
+      )}
+      {result === "won" && (
+        <EndScreen result={result} setPlaying={setPlaying} />
+      )}
     </>
   );
 }
