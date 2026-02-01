@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "./Button";
 
 function EndScreen({ result, setPlaying }) {
@@ -14,16 +13,20 @@ function EndScreen({ result, setPlaying }) {
   }
   return (
     <div
-      className={`fixed inset-0 flex h-full w-full max-w-lg flex-col items-center justify-center gap-4 self-center justify-self-center rounded-2xl border p-4 text-center backdrop-blur-3xl md:h-1/2 md:w-full ${classes}`}
+      className={`fixed inset-0 flex h-screen w-screen justify-center bg-black/50 backdrop-blur-md`}
     >
-      {title}
-      <Button
-        onClick={() => {
-          setPlaying((prev) => !prev);
-        }}
+      <div
+        className={`flex h-full w-full max-w-lg flex-col items-center justify-center gap-4 self-center justify-self-center rounded-2xl border p-4 text-center backdrop-blur-3xl md:h-1/2 md:w-full ${classes}`}
       >
-        Home
-      </Button>
+        {title}
+        <Button
+          onClick={() => {
+            setPlaying((prev) => !prev);
+          }}
+        >
+          Home
+        </Button>
+      </div>
     </div>
   );
 }

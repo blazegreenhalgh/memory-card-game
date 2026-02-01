@@ -53,7 +53,7 @@ function Game({ selectedDeck, rounds, setPlaying }) {
           Round: {selectedCards.length} / {rounds}
         </h1>
       </div>
-      <div className="cards-wrapper mx-auto flex h-fit w-full flex-row flex-wrap items-center justify-start gap-1">
+      <div className="cards-wrapper mx-auto flex grid h-fit w-full grid-cols-4 items-center justify-start gap-1">
         {displayedCards.map((card) => (
           <Card card={card} onClick={handleCardClick} />
         ))}

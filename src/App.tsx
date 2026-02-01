@@ -7,17 +7,17 @@ function App() {
   const [playing, setPlaying] = useState(false);
 
   const decks = {
-    numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    letters: ["a", "b", "c", "d", "e", "f", "g", "h", "i"],
-    symbols: ["!", "@", "#", "$", "%", "^", "&", "*", "("],
+    numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    letters: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"],
+    symbols: ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+"],
   };
   const difficulties = {
-    easy: 3,
-    medium: 5,
-    hard: 8,
+    easy: 4,
+    medium: 8,
+    hard: 12,
   };
   const [selectedDeck, setSelectedDeck] = useState("numbers");
-  const [selectedDifficulty, setSelectedDifficulty] = useState("hard");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
 
   return (
     <main className="px-gutter flex w-full max-w-lg flex-col items-center justify-center gap-4">
@@ -60,7 +60,6 @@ function App() {
           </div>
         </>
       )}
-
       {playing && (
         <Game
           selectedDeck={decks[selectedDeck]}
