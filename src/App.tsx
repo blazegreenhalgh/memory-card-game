@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Card from "./components/Card";
+import EndScreen from "./components/EndScreen";
 
 function App() {
   const [deck, setDeck] = useState([1, 2, 3, 4, 5, 6]);
   const [displayedCards, setDisplayedCards] = useState(Array(4).fill(null));
   const [selectedCards, setSelectedCards] = useState([]);
+  let [lost, setLost] = useState(false);
 
-  const shuffleCards = (deck) => {
-    const shuffledCards = [];
+  const shuffleCards = (deck: any[]) => {
+    const shuffledCards: any[] = [];
     while (shuffledCards.length !== displayedCards.length) {
       const index = Math.floor(Math.random() * deck.length);
       if (!shuffledCards.includes(deck[index])) {
@@ -21,19 +23,25 @@ function App() {
     shuffleCards(deck);
   }, []);
 
-  const selectCard = (card) => {
+  const selectCard = (card: any) => {
     const newSelectedCards = Array.from(selectedCards);
+    if (newSelectedCards.includes(card)) {
+      setLost(true);
+
+      return;
+    }
     newSelectedCards.push(card);
     setSelectedCards(newSelectedCards);
   };
 
-  const handleCardClick = (e, card) => {
+  const handleCardClick = (card: any) => {
     shuffleCards(deck);
     selectCard(card);
   };
 
   return (
     <>
+      {lost && <EndScreen />}
       <h1>Card amount: {displayedCards.length}</h1>
       <div className="flex flex-row gap-1">
         {displayedCards.map((card) => (
