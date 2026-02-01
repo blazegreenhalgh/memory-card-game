@@ -15,7 +15,7 @@ function App() {
   const [roundCount, setRoundCount] = useState(5);
 
   return (
-    <>
+    <main className="flex flex-col justify-center items-center">
       {!playing && <Button onClick={() => setPlaying(true)}>Play</Button>}
 
       {!playing && (
@@ -43,7 +43,7 @@ function App() {
           setPlaying={setPlaying}
         />
       )}
-    </>
+    </main>
   );
 }
 export default App;

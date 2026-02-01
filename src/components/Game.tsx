@@ -47,13 +47,13 @@ function Game({ selectedDeck, rounds, setPlaying }) {
   };
 
   return (
-    <>
+    <div className="game w-full">
       <div className="game-stats flex gap-4 mb-4 justify-center">
         <h1>
           Round: {selectedCards.length} / {rounds}
         </h1>
       </div>
-      <div className="flex flex-row gap-1">
+      <div className="card-wrapper h-full flex flex-row gap-1">
         {displayedCards.map((card) => (
           <Card card={card} onClick={handleCardClick} />
         ))}
@@ -74,7 +74,7 @@ function Game({ selectedDeck, rounds, setPlaying }) {
       {result === "won" && (
         <EndScreen result={result} setPlaying={setPlaying} />
       )}
-    </>
+    </div>
   );
 }
 
