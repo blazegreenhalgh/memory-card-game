@@ -7,7 +7,7 @@ function App() {
   const [deck, setDeck] = useState([1, 2, 3, 4, 5, 6]);
   const [displayedCards, setDisplayedCards] = useState(Array(4).fill(null));
   const [selectedCards, setSelectedCards] = useState([]);
-  let [lost, setLost] = useState(false);
+  let [result, setResult] = useState("");
 
   const shuffleCards = (deck: any[]) => {
     const shuffledCards: any[] = [];
@@ -26,7 +26,7 @@ function App() {
   const selectCard = (card: any) => {
     const newSelectedCards = Array.from(selectedCards);
     if (newSelectedCards.includes(card)) {
-      setLost(true);
+      setResult("lost");
 
       return;
     }
@@ -41,7 +41,8 @@ function App() {
 
   return (
     <>
-      {lost && <EndScreen />}
+      {result === "lost" && <EndScreen result={result} />}
+      {result === "won" && <EndScreen result={result} />}
       <h1>Card amount: {displayedCards.length}</h1>
       <div className="flex flex-row gap-1">
         {displayedCards.map((card) => (
