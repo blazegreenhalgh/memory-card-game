@@ -5,16 +5,16 @@ function EndScreen({ result, setPlaying }) {
   let classes: string = "";
   let title: string = "";
   if (result === "lost") {
-    classes = "bg-red-500";
+    classes = "bg-red-500/50 border-red-700";
     title = "YOU LOST!";
   }
   if (result === "won") {
-    classes = "bg-green-500";
+    classes = "bg-green-500/50 border-green-700";
     title = "YOU WIN!";
   }
   return (
     <div
-      className={`fixed inset-0 self-center justify-self-center w-1/2 h-1/2 rounded-2xl p-4 flex flex-col text-center gap-4 justify-center ${classes}`}
+      className={`fixed inset-0 flex h-full w-full max-w-lg flex-col items-center justify-center gap-4 self-center justify-self-center rounded-2xl border p-4 text-center backdrop-blur-3xl md:h-1/2 md:w-full ${classes}`}
     >
       {title}
       <Button
