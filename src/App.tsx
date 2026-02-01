@@ -18,13 +18,6 @@ function App() {
   };
   const [selectedDeck, setSelectedDeck] = useState("numbers");
   const [selectedDifficulty, setSelectedDifficulty] = useState("hard");
-  const [roundCount, setRoundCount] = useState(
-    difficulties[selectedDifficulty],
-  );
-
-  useEffect(() => {
-    setRoundCount(difficulties[selectedDifficulty]);
-  }, [selectedDifficulty]);
 
   return (
     <main className="px-gutter flex w-full max-w-lg flex-col items-center justify-center gap-4">
@@ -59,7 +52,7 @@ function App() {
                   className="peer sr-only"
                 />
 
-                <span className="inline-flex items-center justify-center rounded-md border border-white/30 px-4 py-2 text-sm transition peer-checked:bg-white peer-checked:text-black hover:bg-gray-100">
+                <span className="inline-flex items-center justify-center rounded-md border border-white/30 px-4 py-2 text-sm transition peer-checked:bg-white peer-checked:text-black hover:bg-gray-100 hover:text-black">
                   {opt}
                 </span>
               </label>
@@ -71,7 +64,7 @@ function App() {
       {playing && (
         <Game
           selectedDeck={decks[selectedDeck]}
-          rounds={roundCount}
+          rounds={difficulties[selectedDifficulty]}
           setPlaying={setPlaying}
         />
       )}

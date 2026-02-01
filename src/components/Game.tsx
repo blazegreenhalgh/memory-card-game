@@ -58,16 +58,7 @@ function Game({ selectedDeck, rounds, setPlaying }) {
           <Card card={card} onClick={handleCardClick} />
         ))}
       </div>
-      <div className="fixed bottom-4 flex flex-col items-center">
-        <h2>Selected Cards:</h2>
-        <div className="flex gap-1">
-          {selectedCards.map((card) => (
-            <div className="cursor-pointer bg-white px-4 py-2 text-black">
-              {card}
-            </div>
-          ))}
-        </div>
-      </div>
+
       {result === "lost" && (
         <EndScreen result={result} setPlaying={setPlaying} />
       )}
