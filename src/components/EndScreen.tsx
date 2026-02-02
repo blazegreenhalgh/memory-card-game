@@ -5,11 +5,11 @@ function EndScreen({ result, setPlaying }) {
   let title: string = "";
   if (result === "lost") {
     classes = "bg-red-500/50 border-red-700";
-    title = "YOU LOST!";
+    title = "You lost :(";
   }
   if (result === "won") {
     classes = "bg-green-500/50 border-green-700";
-    title = "YOU WIN!";
+    title = "You won :)";
   }
   return (
     <div
@@ -24,7 +24,7 @@ function EndScreen({ result, setPlaying }) {
             setPlaying((prev) => !prev);
           }}
         >
-          Home
+          Restart
         </Button>
       </div>
     </div>
