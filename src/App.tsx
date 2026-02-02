@@ -44,6 +44,9 @@ function App() {
 
   return (
     <main className="px-gutter flex w-full max-w-lg flex-col items-center justify-center gap-4">
+      {!playing && (
+        <h1 className="text-center">Don't click the same card twice!</h1>
+      )}
       {!playing && <Button onClick={() => setPlaying(true)}>Play</Button>}
       {!playing && (
         <>
