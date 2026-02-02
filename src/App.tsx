@@ -26,12 +26,11 @@ function App() {
       setGifs(result.data);
     }
     getGifs();
+    (gifs ?? []).forEach((gif, index) => {
+      decks.cats.push(gif.images.preview_gif.url);
+      console.log(gifs);
+    });
   }, []);
-
-  gifs?.forEach((gif, index) => {
-    decks.cats.push(gif.images.preview_gif.url);
-    console.log(gifs);
-  });
 
   return (
     <main className="px-gutter flex w-full max-w-lg flex-col items-center justify-center gap-4">
