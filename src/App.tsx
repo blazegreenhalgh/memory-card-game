@@ -1,36 +1,39 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "./App.css";
 import Game from "./components/Game";
 import Button from "./components/Button";
 
 function App() {
-  const decks = {
-    cats: [],
-  };
   const difficulties = {
     easy: 4,
     medium: 8,
     hard: 12,
   };
   const [playing, setPlaying] = useState(false);
-  const [selectedDeck, setSelectedDeck] = useState("numbers");
+  const [selectedDeck, setSelectedDeck] = useState("cats");
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
-  const [gifs, setGifs] = useState();
+  const [gifs, setGifs] = useState([]);
+  const [decks, setDecks] = useState({
+    cats: [],
+  });
 
   useEffect(() => {
     async function getGifs() {
-      const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
+      const apiKey = "SRXwB3dfb5dsPEpgX28wsgr08oUwzV4F";
       const apiRoot = "https://api.giphy.com/v1/gifs/search";
       const res = await fetch(`${apiRoot}?q=cats&limit=20&api_key=${apiKey}`);
       const result = await res.json();
       setGifs(result.data);
     }
     getGifs();
-    (gifs ?? []).forEach((gif, index) => {
-      decks.cats.push(gif.images.preview_gif.url);
-      console.log(gifs);
-    });
   }, []);
+
+  useEffect(() => {
+    if (!gifs.length) return;
+    setDecks({
+      cats: gifs.map((gif) => gif.images.preview_gif.url),
+    });
+  }, [gifs]);
 
   return (
     <main className="px-gutter flex w-full max-w-lg flex-col items-center justify-center gap-4">

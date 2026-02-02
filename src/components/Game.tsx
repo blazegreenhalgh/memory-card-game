@@ -4,7 +4,7 @@ import Card from "./Card";
 import EndScreen from "./EndScreen";
 
 function Game({ selectedDeck, rounds, setPlaying }) {
-  const deck = selectedDeck.slice(0, Math.floor(rounds * 1));
+  const deck = selectedDeck.slice(0, Math.floor(rounds * 1.5));
   const [displayedCards, setDisplayedCards] = useState(
     Array(rounds).fill(null),
   );
@@ -15,6 +15,7 @@ function Game({ selectedDeck, rounds, setPlaying }) {
     const shuffledCards: any[] = [];
     while (shuffledCards.length !== displayedCards.length) {
       const index = Math.floor(Math.random() * deck.length);
+
       if (!shuffledCards.includes(deck[index])) {
         shuffledCards.push(deck[index]);
       }
