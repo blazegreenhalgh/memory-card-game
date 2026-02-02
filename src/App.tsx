@@ -12,7 +12,7 @@ function App() {
   const [playing, setPlaying] = useState(false);
   const [selectedDeck, setSelectedDeck] = useState("cats");
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
-  const [decks, setDecks] = useState({
+  const [decks, setDecks] = useState<Record<string, string[]>>({
     cats: [],
     "Cute Cats": [],
   });
