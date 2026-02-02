@@ -4,20 +4,34 @@ import Game from "./components/Game";
 import Button from "./components/Button";
 
 function App() {
-  const [playing, setPlaying] = useState(false);
-
   const decks = {
-    numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    letters: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"],
-    symbols: ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+"],
+    cats: [],
   };
   const difficulties = {
     easy: 4,
     medium: 8,
     hard: 12,
   };
+  const [playing, setPlaying] = useState(false);
   const [selectedDeck, setSelectedDeck] = useState("numbers");
   const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
+  const [gifs, setGifs] = useState();
+
+  useEffect(() => {
+    async function getGifs() {
+      const apiKey = import.meta.env.VITE_GIPHY_API_KEY;
+      const apiRoot = "https://api.giphy.com/v1/gifs/search";
+      const res = await fetch(`${apiRoot}?q=cats&limit=20&api_key=${apiKey}`);
+      const result = await res.json();
+      setGifs(result.data);
+    }
+    getGifs();
+  }, []);
+
+  gifs?.forEach((gif, index) => {
+    decks.cats.push(gif.images.preview_gif.url);
+    console.log(gifs);
+  });
 
   return (
     <main className="px-gutter flex w-full max-w-lg flex-col items-center justify-center gap-4">

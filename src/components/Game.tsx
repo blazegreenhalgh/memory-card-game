@@ -4,7 +4,7 @@ import Card from "./Card";
 import EndScreen from "./EndScreen";
 
 function Game({ selectedDeck, rounds, setPlaying }) {
-  const deck = selectedDeck.slice(0, Math.floor(rounds * 1.5));
+  const deck = selectedDeck.slice(0, Math.floor(rounds * 1));
   const [displayedCards, setDisplayedCards] = useState(
     Array(rounds).fill(null),
   );
@@ -44,6 +44,7 @@ function Game({ selectedDeck, rounds, setPlaying }) {
   const handleCardClick = (card: any) => {
     shuffleCards(deck);
     selectCard(card);
+    console.log(card);
   };
 
   return (
